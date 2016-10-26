@@ -5,10 +5,10 @@ START=90
 CONFIG=/etc/vlmcsd.ini
 LOG=/var/log/vlmcsd.log
 
-start(){
+start() {
 	config_load vlmcsd
-	config_get_bool enabled $1 enabled 0
-	[ $enabled -eq 0 ] && exit 0
+	config_get enabled config enabled
+	[ "$enabled" == "0" ] && exit 0
 
 	if [ ! -f "/var/run/vlmcsd.pid" ]; then
 		/usr/bin/vlmcsd -i /etc/vlmcsd.ini -p /var/run/vlmcsd.pid -l $LOG
@@ -18,7 +18,7 @@ start(){
 	fi
 }
 
-stop(){
+stop() {
 	if [ ! -f "/var/run/vlmcsd.pid" ]; then
 		echo "KMS Server is not running."
 	else
@@ -29,9 +29,8 @@ stop(){
 	fi
 }
 
-restart(){
+restart() {
 	stop
 	sleep 1
 	start
-	echo "KMS Server has restarted."
 }
