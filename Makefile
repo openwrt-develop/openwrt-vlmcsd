@@ -4,12 +4,12 @@ PKG_NAME:=vlmcsd
 PKG_VERSION=2016-12-12_svn1107
 PKG_RELEASE:=1
 
-PKG_MAINTAINER:=paradislover <wxu1986@gmail.com>
+PKG_MAINTAINER:=panda-mute <wxuzju@gmail.com>
 PKG_LICENSE:=GPLv3
 PKG_LICENSE_FILES:=LICENSE
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/paradislover/vlmcsd.git
+PKG_SOURCE_URL:=https://github.com/openwrt-develop/vlmcsd.git
 PKG_SOURCE_VERSION:=638f94e48c071e28df281e6f3bb3750c32383ea8
 
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)
