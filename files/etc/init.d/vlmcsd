@@ -1,36 +1,32 @@
 #!/bin/sh /etc/rc.common
-# Copyright (c) 2011-2015 OpenWrt.org
 
-START=90
+START=93
+PROG=/bin/vlmcsd
 CONFIG=/etc/vlmcsd.ini
 LOG=/var/log/vlmcsd.log
 
-start() {
+get_config()
+{
+	config_get_bool enable $1 enable 0
+	[ $enable -eq 0 ] && exit 0
+	config_get_bool use_conf_file $1 use_conf_file 0
+	config_get port $1 port
+}
+
+start()
+{
 	config_load vlmcsd
-	config_get enabled config enabled
-	[ "$enabled" == "0" ] && exit 0
-
-	if [ ! -f "/var/run/vlmcsd.pid" ]; then
-		/usr/bin/vlmcsd -i /etc/vlmcsd.ini -p /var/run/vlmcsd.pid -l $LOG
-		echo "KMS Server has started."
+	config_foreach get_config vlmcsd
+	if [ $use_conf_file -eq 1 ]; then
+		$PROG -i $CONFIG
 	else
-		echo "KMS Server has already started."
+		$PROG -P $port
 	fi
+	iptables -A INPUT -p tcp --dport 1688 -j ACCEPT
 }
 
-stop() {
-	if [ ! -f "/var/run/vlmcsd.pid" ]; then
-		echo "KMS Server is not running."
-	else
-		pid=`cat /var/run/vlmcsd.pid`
-		kill $pid
-		rm -f /var/run/vlmcsd.pid
-		echo "KMS Server has stopped."
-	fi
-}
-
-restart() {
-	stop
-	sleep 1
-	start
+stop()
+{
+	killall vlmcsd
+	iptables -D INPUT -p tcp --dport 1688 -j ACCEPT
 }
