@@ -32,7 +32,7 @@ define Package/vlmcsd/description
 endef
 
 define Package/vlmcsd/install
-	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_DIR) $(1)/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/vlmcsd $(1)/bin/vlmcsd
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bin/vlmcs $(1)/bin/vlmcs
 	$(INSTALL_DIR) $(1)/etc
