@@ -1,6 +1,7 @@
 #!/bin/sh /etc/rc.common
 
 START=93
+STOP=15
 PROG=/bin/vlmcsd
 CONFIG=/etc/vlmcsd.ini
 LOG=/var/log/vlmcsd.log
