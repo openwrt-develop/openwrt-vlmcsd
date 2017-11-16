@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=vlmcsd
-PKG_VERSION=2017-01-19_svn1108
+PKG_VERSION=2017-06-17_svn1111
 PKG_RELEASE:=1
 
 PKG_MAINTAINER:=panda-mute <wxuzju@gmail.com>
@@ -9,8 +9,8 @@ PKG_LICENSE:=GPLv3
 PKG_LICENSE_FILES:=LICENSE
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/openwrt-develop/vlmcsd.git
-PKG_SOURCE_VERSION:=f4d924c932de34a14fb0bd9ec5e5c8b7400ba956
+PKG_SOURCE_URL:=https://github.com/Wind4/vlmcsd.git
+PKG_SOURCE_VERSION:=28a50f7bbaf1f047f6501147ff2a4a80e3f9bc41
 
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)
 PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.gz
